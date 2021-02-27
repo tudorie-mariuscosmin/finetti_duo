@@ -3,6 +3,8 @@
     "dbConfig": {
         "database": "finettiDuo",
         "username": "root",
-        "password": ""
-    }
+        "password": "",
+        "dialect": "mysql"
+    },
+    "jwtSecret": "finettiDuo"
 }
