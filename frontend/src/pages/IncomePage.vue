@@ -3,13 +3,13 @@
     <div class="q-pa-md flex flex-center">
       <q-circular-progress
         show-value
-        font-size="12px"
+        font-size="25px"
         :value="value"
         size="150px"
         :thickness="0.22"
         color="primary"
-        track-color="grey-3"
-        class="q-ma-md"
+        track-color="white"
+        class="q-ma-md text-bold"
       >
         {{ value }}%
       </q-circular-progress>
@@ -18,7 +18,7 @@
     <div>
       <q-tabs
         v-model="tab"
-        class="text-grey"
+        class="text-black"
         active-color="primary"
         align="justify"
         narrow-indicator
