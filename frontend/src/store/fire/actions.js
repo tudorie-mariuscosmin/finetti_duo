@@ -36,6 +36,7 @@ export async function getEconomies({ commit }) {
     try {
         let response = await axios.get('/economies')
         commit('setEconomies', response.data)
+        return response.data
     } catch (err) {
         console.log(err)
     }
@@ -55,6 +56,7 @@ export async function getInvestment({ commit }) {
     try {
         let response = await (axios.get('/investments'))
         commit('setInvestments', response.data)
+        return response.data
     } catch (err) {
         console.log(err)
     }
@@ -71,4 +73,18 @@ export async function addInvestment({ commit }, data) {
 
 export async function setSavings({ commit }, data) {
     commit('setSavings', data)
+}
+export async function setExpenses({ commit }, data) {
+    commit('setExpenses', data)
+}
+
+export async function getInfo({ commit }) {
+    let response = await axios.get('/economies')
+    let economies = response.data
+    //let investments = getInvestment()
+    let incomes = economies.filter((economies) => economies.isIncome).reduce((acc, cur) => acc + cur.value, 0)
+    let expenses = economies.filter((economies) => !economies.isIncome).reduce((acc, cur) => acc + cur.value, 0);
+    let savings = incomes - expenses;
+    commit('setSavings', savings)
+    commit('setExpenses', expenses)
 }

@@ -13,7 +13,7 @@ export default {
       displayNumber: 0,
       number: 0,
       yearsUntilRetirement: 20,
-      interval: true
+      interval: true,
     };
   },
   ready() {
@@ -35,11 +35,20 @@ export default {
           this.displayNumber = this.displayNumber + change;
         }
       }, 250);
-    }
+    },
+  },
+  computed: {
+    savings() {
+      this.$store.getters["fire/getSavingsYearly"];
+    },
+    expenses() {
+      this.$store.getters["fire/getExpensesYearly"];
+    },
   },
   beforeMount() {
     this.number += this.yearsUntilRetirement;
-  }
+    this.$store.dispatch("fire/getInfo");
+  },
 };
 </script>
 

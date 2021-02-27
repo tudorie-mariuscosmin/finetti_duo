@@ -301,6 +301,7 @@ export default {
       let expenses = this.getSpending.reduce((acc, cur) => acc + cur.value, 0);
       let savings = incomes - expenses;
       this.$store.dispatch("fire/setSavings", savings);
+      this.$store.dispatch("fire/setExpenses", expenses);
       if (incomes !== 0) {
         return Math.round((savings / incomes) * 100);
       } else {

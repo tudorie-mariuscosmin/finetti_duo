@@ -12,7 +12,7 @@
 
     41k + 44k = 85k (yearly income/household)
     35k/year = to live
-    25k * 25 = 875k (goal to retirement)
+    35k * 25 = 875k (goal to retirement)
     85k-35j = 50k savings/year
     50k + 7%*50k(passiveIncome) = ? cati ani ai nevoie sa atingi goal-ul =  12 years
 

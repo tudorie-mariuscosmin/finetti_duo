@@ -27,3 +27,6 @@ export function pushInvestment(state, data) {
 export function setSavings(state, data) {
     state.savings = data
 }
+export function setExpenses(state, data) {
+    state.expenses = data
+}

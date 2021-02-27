@@ -12,3 +12,9 @@ export function getInvestments(state) {
 export function getSavings(state) {
     return state.savings
 }
+export function getSavingsYearly(state) {
+    return state.savings * 12
+}
+export function getExpensesYearly(state) {
+    return state.expenses * 12
+}
