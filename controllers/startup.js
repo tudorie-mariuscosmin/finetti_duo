@@ -4,7 +4,7 @@ module.exports = {
     resetDatabase: async (req, res) => {
         try {
             await models.sequelize.sync({ force: true })
-            res.status(200).json({ message: "created" })
+            res.status(200).json({ message: " tables created" })
 
         } catch (err) {
             if (err) {

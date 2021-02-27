@@ -3,15 +3,15 @@ const Sequelize = require('sequelize')
 
 const userModel = require('./user')
 const economiesModel = require('./economies')
-const investingsModel = require('./investings')
+const investmentsModel = require('./investments')
 const models = {
     User: userModel(sequelize, Sequelize),
     Economies: economiesModel(sequelize, Sequelize),
-    Investings: investingsModel(sequelize, Sequelize)
+    Investments: investmentsModel(sequelize, Sequelize)
 }
 
 models.User.hasMany(models.Economies)
-models.User.hasMany(models.Investings)
+models.User.hasMany(models.Investments)
 
 
 
