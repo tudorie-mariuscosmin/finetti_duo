@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <div>
       <q-card class="login-card" flat bordered>
-        <h3 class="q-ma-lg text-supermarcado-one">F.I.R.E.</h3>
+        <h3 class="q-ma-lg text-center text-signika-negative">F.I.R.E.</h3>
         <q-tabs v-model="tab">
           <q-tab label="Login" name="one" />
           <q-tab label="Register" name="two" />
@@ -25,7 +25,7 @@
                 class="q-ma-sm"
                 round
                 unelevated
-                text-color="black"
+                text-color="white"
                 color="primary"
                 icon="eva-log-in-outline"
               />
@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import { LocalStorage } from "quasar";
 import { colors } from "quasar";
 colors.setBrand("light_", "#f8f4f9");
 
@@ -115,20 +114,20 @@ export default {
   border-radius: 100%
 
 .login-card
-  width: 100%
+  width: 80vw
   border: 1px solid rgba(0, 0, 0, 0.1)
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
-  padding: 2vh 12vh
   height: 80vh
+  max-width: 500px
 
 .q-field, .q-field--standout .q-field__control
   margin-bottom: 10px
 
 @media only screen and (max-width: 700px)
   .login-card
-    padding: 2vh
+    padding: 1vh
 
 @media only screen and (max-width: 1150px)
   .login-card
-    padding: 2vh
+    padding: 1vh
 </style>
