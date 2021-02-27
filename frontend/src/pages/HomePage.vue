@@ -1,11 +1,14 @@
 <template>
   <q-page class="constrain">
-    <div class="q-pa-md flex flex-center">
-      <p>{{ displayNumber }}</p>
-
-      <p>Years until retirmenet</p>
-      <q-separator />
-    </div>
+    <q-card flat class="q-ma-md greet-card">
+      <q-card-section class="flex flex-center">
+        <p class="bigNumber text-signika-negative">{{ displayNumber }}</p>
+      </q-card-section>
+      <q-separator inset />
+      <q-card-section class="flex flex-center">
+        <p class="subText text-signika-negative">Years until retiremnet</p>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
@@ -82,4 +85,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="sass">
+.bigNumber
+  margin:0
+  color: black
+  font-size: 120px
+
+.subText
+  display: inline-block
+  color: black
+  font-size: 20px
+
+.greet-card
+  border: 1px solid rgba(0, 0, 0, 0.1)
+</style>

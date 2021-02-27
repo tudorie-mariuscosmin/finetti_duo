@@ -23,9 +23,7 @@
         />
         <q-separator class="large-screen-only" vertical spaced />
         <q-toolbar-title class="text-signika-negative">
-          F.I.R.E
-          <p class="titleN">.</p>
-          I
+          F.I.R.E.
         </q-toolbar-title>
         <q-btn
           class="large-screen-only"
