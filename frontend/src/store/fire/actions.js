@@ -91,7 +91,7 @@ export async function getInfo({ commit }) {
 
     let gains = 0;
     let rateOfReturn = 0;
-
+    let i;
     for (i = 0; i < investments.length; i++) {
         gains += (investments[i].expectedReturn / 100) * investments[i].value;
     }
