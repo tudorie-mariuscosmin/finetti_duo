@@ -19,7 +19,7 @@ module.exports = {
 
     createEconomy: async (req, res) => {
         try {
-            if (!req.body.name || !req.body.value || !req.body.isIncome) {
+            if (!req.body.name || !req.body.value) {
                 res.status(400).json({ message: "Please enter all data" })
             } else {
                 let economy = new Economies(req.body)

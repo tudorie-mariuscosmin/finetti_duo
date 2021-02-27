@@ -40,3 +40,13 @@ export async function getEconomies({ commit }) {
         console.log(err)
     }
 }
+
+export async function addEconomy({ commit }, data) {
+    try {
+        await axios.post('/economies', data)
+        commit('pushEconomy', data)
+
+    } catch (err) {
+        console.log(err)
+    }
+}
