@@ -96,7 +96,7 @@ export async function getInfo({ commit }) {
         gains += (investments[i].expectedReturn / 100) * investments[i].value;
     }
     if (savings !== 0) {
-        rateOfReturn = Math.round(((investments * 100) / this.getSavings) * 10) / 10;
+        rateOfReturn = Math.round(((gains * 100) / savings) * 10) / 10;
     } else {
         rateOfReturn = 0;
     }

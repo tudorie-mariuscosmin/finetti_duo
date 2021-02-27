@@ -3,6 +3,7 @@
     <p>Yeah until retirmenet</p>
 
     {{ displayNumber }}
+    {{ years }}
   </q-page>
 </template>
 
@@ -39,15 +40,43 @@ export default {
   },
   computed: {
     savings() {
-      this.$store.getters["fire/getSavingsYearly"];
+      return this.$store.getters["fire/getSavings"];
     },
     expenses() {
-      this.$store.getters["fire/getExpensesYearly"];
+      return this.$store.getters["fire/getExpenses"];
+    },
+    goalToRetire() {
+      return this.expenses * 25;
+    },
+    getRateOfReturn() {
+      return this.$store.getters["fire/getRateOfReturn"];
+    },
+
+    years() {
+      let yearlySavings =
+        this.savings + (this.getRateOfReturn / 100) * this.savings;
+      console.log("yearly savings" + yearlySavings);
+      let years = 1;
+      let sum = yearlySavings;
+      let lastYear = yearlySavings;
+      while (sum < this.goalToRetire) {
+        yearlySavings = this.calcSavings(lastYear);
+        sum += yearlySavings;
+        lastYear = yearlySavings;
+        console.log(`sum ${sum} on year${years}`);
+        years++;
+      }
+      return years;
     },
   },
   beforeMount() {
     this.number += this.yearsUntilRetirement;
     this.$store.dispatch("fire/getInfo");
+  },
+  methods: {
+    calcSavings(savings) {
+      return savings + (this.getRateOfReturn / 100) * savings;
+    },
   },
 };
 </script>
