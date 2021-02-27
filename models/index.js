@@ -10,6 +10,9 @@ const models = {
     Investings: investingsModel(sequelize, Sequelize)
 }
 
+models.User.hasMany(models.Economies)
+models.User.hasMany(models.Investings)
+
 
 
 module.exports = { ...models, sequelize }
