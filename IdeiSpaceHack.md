@@ -43,3 +43,8 @@ Scala de risc a invetitiilor (pentru investitii riscante recomandari)
 - DESCRIPTION
 - VALUE : number
 - EXPECTEDRETURN : number
+
+
+
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b709bb5fd2102e1da907)
