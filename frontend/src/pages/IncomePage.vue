@@ -149,7 +149,7 @@
                 color="negative"
                 text-color="white"
               >
-                RON 7000
+                RON {{ economy.value }}
               </q-chip>
             </q-item>
             <q-item>
@@ -184,9 +184,7 @@
     <q-dialog v-model="dialogAdd">
       <q-card class="dialogBox">
         <q-card-section class="row">
-          <div class="q-pr-lg text-h6">
-            Add item
-          </div>
+          <div class="q-pr-lg text-h6">Add item</div>
           <q-space />
           <q-btn v-close-popup dense flat rounded icon="close" />
         </q-card-section>
@@ -223,7 +221,7 @@
                 toggle-color="primary"
                 :options="[
                   { label: 'Income', value: true },
-                  { label: 'Expense', value: false }
+                  { label: 'Expense', value: false },
                 ]"
               />
             </div>
@@ -260,7 +258,7 @@ export default {
         name: "",
         description: "",
         value: 0,
-        isIncome: false
+        isIncome: false,
       },
       // economies: [
       //   {
@@ -285,27 +283,31 @@ export default {
       //     isIncome: true,
       //   },
       // ],
-      economies: []
+      economies: [],
     };
   },
   computed: {
     getIncomes() {
-      return this.economies.filter(economies => economies.isIncome);
+      return this.getEconomies.filter((economies) => economies.isIncome);
     },
     getSpending() {
-      return this.economies.filter(economies => !economies.isIncome);
-    }
+      return this.getEconomies.filter((economies) => !economies.isIncome);
+    },
+    getEconomies() {
+      return this.$store.getters["fire/getEconomies"];
+    },
   },
   methods: {
     addItem() {
+      this.$store.dispatch("fire/addEconomy", { ...this.itemToAdd });
       this.dialogAdd = false;
-    }
+    },
   },
   beforeMount() {
     this.$store.dispatch("fire/getEconomies");
     this.economies = this.$store.getters["fire/getEconomies"];
     console.log(this.economies);
-  }
+  },
 };
 </script>
 

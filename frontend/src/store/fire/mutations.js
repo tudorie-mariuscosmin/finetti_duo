@@ -13,3 +13,7 @@ export function logout(state) {
 export function setEconomies(state, data) {
     state.economies = data
 }
+
+export function pushEconomy(state, data) {
+    state.economies.unshift(data)
+}
