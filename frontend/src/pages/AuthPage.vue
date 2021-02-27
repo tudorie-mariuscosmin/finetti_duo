@@ -2,7 +2,9 @@
   <q-page class="flex flex-center">
     <div>
       <q-card class="login-card" flat bordered>
-        <h3 class="q-ma-lg text-center text-signika-negative">F.I.R.E.</h3>
+        <div class="q-ma-lg text-center text-signika-negative">
+          <Title class="text-h3" />
+        </div>
         <q-tabs v-model="tab">
           <q-tab label="Login" name="one" />
           <q-tab label="Register" name="two" />
@@ -62,11 +64,16 @@
 </template>
 
 <script>
+import Title from "../components/Title";
 import { colors } from "quasar";
 colors.setBrand("light_", "#f8f4f9");
 
 export default {
+  components: { Title },
   name: "AuthPage",
+  components: {
+    Title: Title,
+  },
   data() {
     return {
       tab: "one",
