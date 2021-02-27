@@ -69,8 +69,18 @@ export default {
       navs: [
         {
           label: "Home",
-          icon: "home",
+          icon: "eva-home-outline",
           to: "/"
+        },
+        {
+          label: "Income",
+          icon: "eva-pie-chart-outline",
+          to: "/income"
+        },
+        {
+          label: "Investing",
+          icon: "eva-bar-chart-2-outline",
+          to: "/investing"
         }
       ]
     };
