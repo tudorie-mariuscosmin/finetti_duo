@@ -7,7 +7,7 @@ module.exports = {
             const economies = await Economies.findAll({ where: { userId: req.user.id } })
             if (economies) {
                 const data = economies.map(x => {
-                    return { id: x.id, name: x.name, description: x.description, value: x.value }
+                    return { id: x.id, name: x.name, description: x.description, value: x.value, isIncome: x.isIncome }
                 })
                 res.json(data)
             }

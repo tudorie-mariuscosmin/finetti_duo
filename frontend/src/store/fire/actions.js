@@ -31,3 +31,12 @@ export function logout({ commit }) {
         resolve()
     })
 }
+
+export async function getEconomies({ commit }) {
+    try {
+        let response = await axios.get('/economies')
+        commit('setEconomies', response.data)
+    } catch (err) {
+        console.log(err)
+    }
+}

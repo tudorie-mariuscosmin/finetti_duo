@@ -9,3 +9,7 @@ export function auth_success(state, token) {
 export function logout(state) {
     state.token = ''
 }
+
+export function setEconomies(state, data) {
+    state.economies = data
+}

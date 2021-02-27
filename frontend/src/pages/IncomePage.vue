@@ -186,40 +186,46 @@ export default {
     return {
       value: 71,
       tab: "economies",
-      economies: [
-        {
-          id: 0,
-          name: "Name 0",
-          description: "Economy description 0",
-          value: 7000,
-          isIncome: true
-        },
-        {
-          id: 1,
-          name: "Name 1",
-          description: "Economy description 1",
-          value: 7000,
-          isIncome: false
-        },
-        {
-          id: 2,
-          name: "Name 2",
-          description: "Economy description 2",
-          value: 7000,
-          isIncome: true
-        }
-      ]
+      // economies: [
+      //   {
+      //     id: 0,
+      //     name: "Name 0",
+      //     description: "Economy description 0",
+      //     value: 7000,
+      //     isIncome: true,
+      //   },
+      //   {
+      //     id: 1,
+      //     name: "Name 1",
+      //     description: "Economy description 1",
+      //     value: 7000,
+      //     isIncome: false,
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "Name 2",
+      //     description: "Economy description 2",
+      //     value: 7000,
+      //     isIncome: true,
+      //   },
+      // ],
+      economies: [],
     };
   },
   computed: {
     getIncomes() {
-      return this.economies.filter(economies => economies.isIncome);
+      return this.economies.filter((economies) => economies.isIncome);
     },
     getSpending() {
-      return this.economies.filter(economies => !economies.isIncome);
-    }
+      return this.economies.filter((economies) => !economies.isIncome);
+    },
   },
-  methods: {}
+  methods: {},
+  beforeMount() {
+    this.$store.dispatch("fire/getEconomies");
+    this.economies = this.$store.getters["fire/getEconomies"];
+    console.log(this.economies);
+  },
 };
 </script>
 
