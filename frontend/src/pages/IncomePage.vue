@@ -1,18 +1,22 @@
 <template>
   <q-page class="constrain">
-    <div class="q-pa-md flex flex-center">
+    <h5 class="text-signika-negative text-center">My Savings</h5>
+    <div class="q-pa-md flex flex-center column">
       <q-circular-progress
         show-value
         font-size="25px"
         :value="value"
         size="150px"
         :thickness="0.22"
-        color="primary"
+        :color="value > 75 ? 'blue' : value > 50 ? 'green' : 'red'"
         track-color="white"
         class="q-ma-md text-bold"
       >
         {{ value }}%
       </q-circular-progress>
+      <p style="font-size: 22px" class="text-weight-medium q-mt-sm">
+        {{ savings }} / {{ incomes }}
+      </p>
     </div>
 
     <div>
@@ -21,10 +25,11 @@
         class="text-black"
         active-color="primary"
         align="justify"
+        inline-label
         narrow-indicator
       >
-        <q-tab name="incomes" icon="eva-plus-circle-outline" />
-        <q-tab name="spendings" icon="eva-minus-circle-outline" />
+        <q-tab name="incomes" icon="eva-plus-outline" label="Incomes" />
+        <q-tab name="spendings" icon="eva-minus-outline" label="Spendings" />
       </q-tabs>
 
       <q-tab-panels v-model="tab" animated>
@@ -234,9 +239,9 @@
               round
               unelevated
               size="16px"
-              text-color="black"
+              text-color="white"
               color="primary"
-              icon="eva-checkmark-circle-2-outline"
+              icon="eva-checkmark-outline"
               v-close-popup
             />
           </q-card-actions>
@@ -284,6 +289,8 @@ export default {
       //   },
       // ],
       economies: [],
+      incomes: 0,
+      savings: 0,
     };
   },
   computed: {
@@ -300,6 +307,8 @@ export default {
       let incomes = this.getIncomes.reduce((acc, cur) => acc + cur.value, 0);
       let expenses = this.getSpending.reduce((acc, cur) => acc + cur.value, 0);
       let savings = incomes - expenses;
+      this.incomes = incomes;
+      this.savings = savings;
       this.$store.dispatch("fire/setSavings", savings);
       this.$store.dispatch("fire/setExpenses", expenses);
       if (incomes !== 0) {

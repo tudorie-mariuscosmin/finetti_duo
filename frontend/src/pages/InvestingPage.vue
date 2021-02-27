@@ -1,5 +1,6 @@
 <template>
   <q-page class="constrain">
+    <h5 class="text-signika-negative text-center">My Investments</h5>
     <div class="q-pa-md flex flex-center">
       <q-circular-progress
         show-value
@@ -7,9 +8,10 @@
         :value="value"
         size="150px"
         :thickness="0.22"
-        color="primary"
+        :color="value >= 10 ? 'blue' : value >= 7 ? 'green' : 'red'"
         track-color="white"
         class="q-ma-md text-bold"
+        :max="maxValue"
       >
         {{ value }}%
       </q-circular-progress>
@@ -24,16 +26,16 @@
         bordered
       >
         <q-item>
-          <q-item-section avatar>
+          <!-- <q-item-section avatar>
             <q-avatar
               color="grey-3"
               text-color="black"
               icon="eva-minus-outline"
             />
-          </q-item-section>
+          </q-item-section> -->
 
           <q-item-section>
-            <q-item-label class="text-bold">
+            <q-item-label class="text-h6 text-bold">
               {{ investment.name }}
             </q-item-label>
           </q-item-section>
@@ -137,17 +139,15 @@
               round
               unelevated
               size="16px"
-              text-color="black"
+              text-color="white"
               color="primary"
-              icon="eva-checkmark-circle-2-outline"
+              icon="eva-checkmark-outline"
               v-close-popup
             />
           </q-card-actions>
         </form>
       </q-card>
     </q-dialog>
-    {{ value }}
-    {{ getSavings }}
   </q-page>
 </template>
 
@@ -161,8 +161,9 @@ export default {
         name: "",
         description: "",
         value: 0,
-        expectedReturn: 0
-      }
+        expectedReturn: 0,
+      },
+      maxValue: 15,
     };
   },
   computed: {
@@ -189,23 +190,24 @@ export default {
       } else {
         return 0;
       }
-    }
+    },
   },
   methods: {
     addItem() {
       this.$store.dispatch("fire/addInvestment", { ...this.itemToAdd });
       this.dialogAdd = false;
-    }
+    },
   },
   beforeMount() {
     this.$store.dispatch("fire/getInvestment");
     this.$store.dispatch("fire/getEconomies");
-  }
+  },
 };
 </script>
 
 <style>
 .dialogBox {
-  min-width: 40%;
+  width: 90%;
+  max-width: 500px;
 }
 </style>
