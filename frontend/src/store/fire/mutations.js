@@ -30,3 +30,8 @@ export function setSavings(state, data) {
 export function setExpenses(state, data) {
     state.expenses = data
 }
+
+export function setRateOfReturn(state, data) {
+    state.rateOfReturn = data
+}
+

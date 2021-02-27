@@ -80,11 +80,28 @@ export async function setExpenses({ commit }, data) {
 
 export async function getInfo({ commit }) {
     let response = await axios.get('/economies')
+    let responseInvestements = await axios.get('/investments')
+
     let economies = response.data
-    //let investments = getInvestment()
+    let investments = responseInvestements.data
+
     let incomes = economies.filter((economies) => economies.isIncome).reduce((acc, cur) => acc + cur.value, 0)
     let expenses = economies.filter((economies) => !economies.isIncome).reduce((acc, cur) => acc + cur.value, 0);
     let savings = incomes - expenses;
+
+    let gains = 0;
+    let rateOfReturn = 0;
+
+    for (i = 0; i < investments.length; i++) {
+        gains += (investments[i].expectedReturn / 100) * investments[i].value;
+    }
+    if (savings !== 0) {
+        rateOfReturn = Math.round(((investments * 100) / this.getSavings) * 10) / 10;
+    } else {
+        rateOfReturn = 0;
+    }
+
+    commit('setRateOfReturn', rateOfReturn)
     commit('setSavings', savings)
     commit('setExpenses', expenses)
 }

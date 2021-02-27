@@ -18,3 +18,7 @@ export function getSavingsYearly(state) {
 export function getExpensesYearly(state) {
     return state.expenses * 12
 }
+
+export function getRateOfReturn(state) {
+    return state.rateOfRturn
+}

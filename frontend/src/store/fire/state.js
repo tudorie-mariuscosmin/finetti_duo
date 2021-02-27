@@ -5,6 +5,7 @@ export default function () {
     economies: [],
     investments: [],
     savings: 0,
-    expenses: 0
+    expenses: 0,
+    rateOfReturn: 0
   }
 }
