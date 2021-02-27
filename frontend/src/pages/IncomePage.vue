@@ -176,6 +176,75 @@
         </q-tab-panel>
       </q-tab-panels>
     </div>
+
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-btn fab icon="add" color="primary" @click="dialogAdd = true" />
+    </q-page-sticky>
+
+    <q-dialog v-model="dialogAdd">
+      <q-card class="dialogBox">
+        <q-card-section class="row">
+          <div class="q-pr-lg text-h6">
+            Add item
+          </div>
+          <q-space />
+          <q-btn v-close-popup dense flat rounded icon="close" />
+        </q-card-section>
+        <form>
+          <q-card-section class="q-pa-lg">
+            <div class="row q-mb-lg">
+              <q-input
+                v-model="itemToAdd.name"
+                label="Title"
+                class="col"
+                clearable
+              />
+            </div>
+            <div class="row q-mb-lg">
+              <q-input
+                v-model="itemToAdd.description"
+                label="Description"
+                class="col"
+                clearable
+              />
+            </div>
+            <div class="row q-mb-lg">
+              <q-input
+                label="Value (RON)"
+                v-model="itemToAdd.value"
+                type="number"
+                filled
+                style="max-width: 200px"
+              />
+            </div>
+            <div class="row q-mb-lg">
+              <q-btn-toggle
+                v-model="itemToAdd.isIncome"
+                toggle-color="primary"
+                :options="[
+                  { label: 'Income', value: true },
+                  { label: 'Expense', value: false }
+                ]"
+              />
+            </div>
+          </q-card-section>
+          <q-card-actions align="right">
+            <q-btn
+              @click="addItem()"
+              type="submit"
+              class="q-ma-sm"
+              round
+              unelevated
+              size="16px"
+              text-color="black"
+              color="primary"
+              icon="eva-checkmark-circle-2-outline"
+              v-close-popup
+            />
+          </q-card-actions>
+        </form>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -185,7 +254,14 @@ export default {
   data() {
     return {
       value: 71,
+      dialogAdd: false,
       tab: "economies",
+      itemToAdd: {
+        name: "",
+        description: "",
+        value: 0,
+        isIncome: false
+      },
       // economies: [
       //   {
       //     id: 0,
@@ -209,24 +285,32 @@ export default {
       //     isIncome: true,
       //   },
       // ],
-      economies: [],
+      economies: []
     };
   },
   computed: {
     getIncomes() {
-      return this.economies.filter((economies) => economies.isIncome);
+      return this.economies.filter(economies => economies.isIncome);
     },
     getSpending() {
-      return this.economies.filter((economies) => !economies.isIncome);
-    },
+      return this.economies.filter(economies => !economies.isIncome);
+    }
   },
-  methods: {},
+  methods: {
+    addItem() {
+      this.dialogAdd = false;
+    }
+  },
   beforeMount() {
     this.$store.dispatch("fire/getEconomies");
     this.economies = this.$store.getters["fire/getEconomies"];
     console.log(this.economies);
-  },
+  }
 };
 </script>
 
-<style></style>
+<style>
+.dialogBox {
+  min-width: 40%;
+}
+</style>
