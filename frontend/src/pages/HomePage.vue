@@ -1,9 +1,11 @@
 <template>
   <q-page class="constrain">
-    <p>Yeah until retirmenet</p>
+    <div class="q-pa-md flex flex-center">
+      <p>{{ displayNumber }}</p>
 
-    {{ displayNumber }}
-    {{ years }}
+      <p>Years until retirmenet</p>
+      <q-separator />
+    </div>
   </q-page>
 </template>
 
@@ -13,8 +15,7 @@ export default {
     return {
       displayNumber: 0,
       number: 0,
-      yearsUntilRetirement: 20,
-      interval: true,
+      interval: true
     };
   },
   ready() {
@@ -36,7 +37,7 @@ export default {
           this.displayNumber = this.displayNumber + change;
         }
       }, 250);
-    },
+    }
   },
   computed: {
     savings() {
@@ -67,17 +68,17 @@ export default {
         years++;
       }
       return years;
-    },
+    }
   },
   beforeMount() {
-    this.number += this.yearsUntilRetirement;
+    this.number += this.years;
     this.$store.dispatch("fire/getInfo");
   },
   methods: {
     calcSavings(savings) {
       return savings + (this.getRateOfReturn / 100) * savings;
-    },
-  },
+    }
+  }
 };
 </script>
 

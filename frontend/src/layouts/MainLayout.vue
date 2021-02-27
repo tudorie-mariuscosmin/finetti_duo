@@ -22,8 +22,10 @@
           round
         />
         <q-separator class="large-screen-only" vertical spaced />
-        <q-toolbar-title class="text-supermarcado-one">
-          F.I.R.E.
+        <q-toolbar-title class="text-signika-negative">
+          F.I.R.E
+          <p class="titleN">.</p>
+          I
         </q-toolbar-title>
         <q-btn
           class="large-screen-only"
@@ -66,48 +68,17 @@ export default {
       this.$store.dispatch("fire/logout").then(() => {
         this.$router.push("/login");
       });
-    },
-  },
+    }
+  }
 };
-// <script>
-// export default {
-//   name: "MainLayout",
-//   data() {
-//     return {
-//       drawer: true,
-//       miniState: true,
-//       navs: [
-//         {
-//           label: "Home",
-//           icon: "eva-home-outline",
-//           to: "/"
-//         },
-//         {
-//           label: "Income",
-//           icon: "eva-pie-chart-outline",
-//           to: "/income"
-//         },
-//         {
-//           label: "Investing",
-//           icon: "eva-bar-chart-2-outline",
-//           to: "/investing"
-//         }
-//       ]
-//     };
-//   }
-// };
-//
-</script>
 </script>
 
 <style lang="sass">
 .titleN
-  margin: 0
-  padding: 0 0.3em
+  margin: 0 -0.1em
+  padding: 0
   display: inline-block
   color: black
-  background-color: $primary
-  border-radius: 100%
 
 .q-toolbar
   @media (min-width: $breakpoint-sm-min)
@@ -121,5 +92,3 @@ export default {
   .q-tab__icon
     font-size: 30px
 </style>
-
-
