@@ -55,7 +55,7 @@
             text-color="white"
             icon="eva-trending-up-outline"
           >
-            RON {{ investment.expectedReturn }}
+            {{ investment.expectedReturn }} %
           </q-chip>
         </q-item>
         <q-item>
@@ -121,7 +121,7 @@
             </div>
             <div class="row q-mb-lg">
               <q-input
-                label="Expected Return (RON)"
+                label="Expected Return (%)"
                 v-model="itemToAdd.expectedReturn"
                 type="number"
                 filled
@@ -146,6 +146,8 @@
         </form>
       </q-card>
     </q-dialog>
+    {{ value }}
+    {{ getSavings }}
   </q-page>
 </template>
 
@@ -154,53 +156,51 @@ export default {
   name: "IncomePage",
   data() {
     return {
-      value: 71,
       dialogAdd: false,
       itemToAdd: {
         name: "",
         description: "",
         value: 0,
-        expectedReturn: 0,
-      },
-      // investments: [
-      //   {
-      //     id: 0,
-      //     name: "Investment Name 0",
-      //     description: "Investment description 0",
-      //     value: 1000,
-      //     expectedReturn: 1000,
-      //   },
-      //   {
-      //     id: 1,
-      //     name: "Investment Name 1",
-      //     description: "Investment description 1",
-      //     value: 2000,
-      //     expectedReturn: 2000,
-      //   },
-      //   {
-      //     id: 2,
-      //     name: "Investment 2",
-      //     description: "Investment description 2",
-      //     value: 2000,
-      //     expectedReturn: 2000,
-      //   },
-      // ],
+        expectedReturn: 0
+      }
     };
   },
   computed: {
     investments() {
       return this.$store.getters["fire/getInvestments"];
     },
+    getEconomies() {
+      return this.$store.getters["fire/getEconomies"];
+    },
+    getSavings() {
+      return this.$store.getters["fire/getSavings"];
+    },
+    value() {
+      let investments = 0;
+      let i;
+      for (i = 0; i < this.investments.length; i++) {
+        investments +=
+          (this.investments[i].expectedReturn / 100) *
+          this.investments[i].value;
+      }
+
+      if (this.getSavings !== 0) {
+        return Math.round(((investments * 100) / this.getSavings) * 10) / 10;
+      } else {
+        return 0;
+      }
+    }
   },
   methods: {
     addItem() {
       this.$store.dispatch("fire/addInvestment", { ...this.itemToAdd });
       this.dialogAdd = false;
-    },
+    }
   },
   beforeMount() {
     this.$store.dispatch("fire/getInvestment");
-  },
+    this.$store.dispatch("fire/getEconomies");
+  }
 };
 </script>
 
