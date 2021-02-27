@@ -2,9 +2,7 @@
   <q-page class="flex flex-center">
     <div>
       <q-card class="login-card" flat bordered>
-        <h3 class="q-ma-lg text-supermarcado-one">
-          F.I.R.E.
-        </h3>
+        <h3 class="q-ma-lg text-supermarcado-one">F.I.R.E.</h3>
         <q-tabs v-model="tab">
           <q-tab label="Login" name="one" />
           <q-tab label="Register" name="two" />
@@ -77,67 +75,27 @@ export default {
         password: "",
         email: "",
         firstName: "",
-        lastName: ""
+        lastName: "",
       },
       login: {
         password: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
-  beforeMount() {
-    if (LocalStorage.getItem("loggedIn")) {
-      this.$router.push("/");
-    }
-  },
   methods: {
-    onSignup() {
-      console.log("onSignup fired");
-      this.$axios
-        .post(`${process.env.API}/api/auth/register`, this.signup)
-        .then(response => {
-          console.log(response.data);
-          this.$q.notify({
-            color: "green",
-            message: response.data.message,
-            icon: "arrow_forward"
-          });
-        })
-        .catch(error => {
-          this.$q.notify({
-            color: "negative",
-            message: error.response.data.message,
-            icon: "report_problem"
-          });
-        });
-    },
+    onSignup() {},
     onLogin() {
-      console.log("onLogin fired");
-      this.$axios
-        .post(`${process.env.API}/api/auth/login`, {
-          email: this.login.email,
-          password: this.login.password
-        })
-        .then(response => {
-          this.$q.notify({
-            color: "green",
-            message: response.data.message,
-            icon: "arrow_forward"
-          });
-          console.log(response.data);
-          LocalStorage.set("loggedIn", true);
-          LocalStorage.set("userId", response.data.userId);
+      this.$store
+        .dispatch("fire/login", this.login)
+        .then(() => {
           this.$router.push("/");
         })
-        .catch(error => {
-          this.$q.notify({
-            color: "negative",
-            message: error.response.data.message,
-            icon: "report_problem"
-          });
+        .catch((err) => {
+          console.log(err);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -149,13 +107,12 @@ export default {
  *}
 
 .titleN
-  margin:0
-  padding:0.2em 0.3em
+  margin: 0
+  padding: 0.2em 0.3em
   display: inline-block
   color: black
   background-color: $primary
-  border-radius:100%
-
+  border-radius: 100%
 
 .login-card
   width: 100%

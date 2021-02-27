@@ -1,8 +1,18 @@
+import fire from '../store/fire'
+const authorize = (to, from, next) => {
+  if (fire.state().token) {
+    next()
+  } else {
+    next('/login')
+  }
+}
+
 
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
+    beforeEnter: authorize,
     children: [
       { path: '', component: () => import('pages/HomePage.vue') },
       { path: '/income', component: () => import('pages/IncomePage.vue') },

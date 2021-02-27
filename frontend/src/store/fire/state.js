@@ -1,5 +1,6 @@
+import { LocalStorage } from 'quasar'
 export default function () {
   return {
-    token: ""
+    token: LocalStorage.getItem("token") || ""
   }
 }
