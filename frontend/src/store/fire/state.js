@@ -3,6 +3,7 @@ export default function () {
   return {
     token: LocalStorage.getItem("token") || "",
     economies: [],
-    investments: []
+    investments: [],
+    savings: 0
   }
 }

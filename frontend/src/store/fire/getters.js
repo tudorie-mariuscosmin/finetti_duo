@@ -9,3 +9,6 @@ export function getEconomies(state) {
 export function getInvestments(state) {
     return state.investments
 }
+export function getSavings(state) {
+    return state.savings
+}

@@ -68,3 +68,7 @@ export async function addInvestment({ commit }, data) {
         console.log(err)
     }
 }
+
+export async function setSavings({ commit }, data) {
+    commit('setSavings', data)
+}

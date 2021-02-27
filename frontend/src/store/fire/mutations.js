@@ -24,3 +24,6 @@ export function setInvestments(state, data) {
 export function pushInvestment(state, data) {
     state.investments.unshift(data)
 }
+export function setSavings(state, data) {
+    state.savings = data
+}
