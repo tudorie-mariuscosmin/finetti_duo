@@ -11,7 +11,7 @@
           flat
           round
         />
-        
+
         <q-btn
           class="large-screen-only q-mr-sm"
           icon="eva-bar-chart-2-outline"
@@ -34,15 +34,6 @@
           flat
           round
         />
-        <q-separator vertical spaced />
-        <q-btn
-          @click="logout()"
-          icon="eva-log-out-outline"
-          size="18px"
-          dense
-          flat
-          round
-        />
       </q-toolbar>
     </q-header>
     <q-footer class="bg-white small-screen-only" bordered>
@@ -54,10 +45,11 @@
         <q-route-tab to="/" icon="eva-home-outline" />
         <q-route-tab to="/income" icon="eva-pie-chart-outline" />
         <q-route-tab to="/investing" icon="eva-bar-chart-2-outline" />
+        <q-tab icon="eva-log-out-outline" @click="logout()" />
       </q-tabs>
     </q-footer>
 
-    <q-page-container >
+    <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
@@ -71,8 +63,11 @@ export default {
   },
   methods: {
     logout() {
-    }
-  }
+      this.$store.dispatch("fire/logout").then(() => {
+        this.$router.push("/login");
+      });
+    },
+  },
 };
 // <script>
 // export default {
@@ -101,17 +96,18 @@ export default {
 //     };
 //   }
 // };
-// </script>
+//
+</script>
 </script>
 
 <style lang="sass">
 .titleN
-  margin:0
-  padding:0 0.3em
+  margin: 0
+  padding: 0 0.3em
   display: inline-block
   color: black
   background-color: $primary
-  border-radius:100%
+  border-radius: 100%
 
 .q-toolbar
   @media (min-width: $breakpoint-sm-min)

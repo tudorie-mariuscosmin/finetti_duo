@@ -50,3 +50,21 @@ export async function addEconomy({ commit }, data) {
         console.log(err)
     }
 }
+
+export async function getInvestment({ commit }) {
+    try {
+        let response = await (axios.get('/investments'))
+        commit('setInvestments', response.data)
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export async function addInvestment({ commit }, data) {
+    try {
+        await axios.post('/investments', data)
+        commit('pushInvestment', data)
+    } catch (err) {
+        console.log(err)
+    }
+}

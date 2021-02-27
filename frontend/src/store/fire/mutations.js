@@ -17,3 +17,10 @@ export function setEconomies(state, data) {
 export function pushEconomy(state, data) {
     state.economies.unshift(data)
 }
+export function setInvestments(state, data) {
+    state.investments = data
+}
+
+export function pushInvestment(state, data) {
+    state.investments.unshift(data)
+}

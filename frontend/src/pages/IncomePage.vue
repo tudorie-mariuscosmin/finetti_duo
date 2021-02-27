@@ -253,7 +253,7 @@ export default {
     return {
       //value: 71,
       dialogAdd: false,
-      tab: "economies",
+      tab: "incomes",
       itemToAdd: {
         name: "",
         description: "",
@@ -315,8 +315,6 @@ export default {
   },
   beforeMount() {
     this.$store.dispatch("fire/getEconomies");
-    this.economies = this.$store.getters["fire/getEconomies"];
-    console.log(this.economies);
   },
 };
 </script>

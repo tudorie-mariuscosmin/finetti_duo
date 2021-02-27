@@ -88,9 +88,7 @@
     <q-dialog v-model="dialogAdd">
       <q-card class="dialogBox">
         <q-card-section class="row">
-          <div class="q-pr-lg text-h6">
-            Add item
-          </div>
+          <div class="q-pr-lg text-h6">Add item</div>
           <q-space />
           <q-btn v-close-popup dense flat rounded icon="close" />
         </q-card-section>
@@ -162,45 +160,47 @@ export default {
         name: "",
         description: "",
         value: 0,
-        expectedReturn: 0
+        expectedReturn: 0,
       },
-      investments: [
-        {
-          id: 0,
-          name: "Investment Name 0",
-          description: "Investment description 0",
-          value: 1000,
-          expectedReturn: 1000
-        },
-        {
-          id: 1,
-          name: "Investment Name 1",
-          description: "Investment description 1",
-          value: 2000,
-          expectedReturn: 2000
-        },
-        {
-          id: 2,
-          name: "Investment 2",
-          description: "Investment description 2",
-          value: 2000,
-          expectedReturn: 2000
-        }
-      ]
-      // economies: []
+      // investments: [
+      //   {
+      //     id: 0,
+      //     name: "Investment Name 0",
+      //     description: "Investment description 0",
+      //     value: 1000,
+      //     expectedReturn: 1000,
+      //   },
+      //   {
+      //     id: 1,
+      //     name: "Investment Name 1",
+      //     description: "Investment description 1",
+      //     value: 2000,
+      //     expectedReturn: 2000,
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "Investment 2",
+      //     description: "Investment description 2",
+      //     value: 2000,
+      //     expectedReturn: 2000,
+      //   },
+      // ],
     };
   },
-  computed: {},
+  computed: {
+    investments() {
+      return this.$store.getters["fire/getInvestments"];
+    },
+  },
   methods: {
     addItem() {
+      this.$store.dispatch("fire/addInvestment", { ...this.itemToAdd });
       this.dialogAdd = false;
-    }
+    },
   },
   beforeMount() {
-    // this.$store.dispatch("fire/getEconomies");
-    // this.economies = this.$store.getters["fire/getEconomies"];
-    // console.log(this.economies);
-  }
+    this.$store.dispatch("fire/getInvestment");
+  },
 };
 </script>
 
