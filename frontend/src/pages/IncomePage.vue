@@ -251,7 +251,7 @@ export default {
   name: "IncomePage",
   data() {
     return {
-      value: 71,
+      //value: 71,
       dialogAdd: false,
       tab: "economies",
       itemToAdd: {
@@ -295,6 +295,16 @@ export default {
     },
     getEconomies() {
       return this.$store.getters["fire/getEconomies"];
+    },
+    value() {
+      let incomes = this.getIncomes.reduce((acc, cur) => acc + cur.value, 0);
+      let expenses = this.getSpending.reduce((acc, cur) => acc + cur.value, 0);
+      let savings = incomes - expenses;
+      if (incomes !== 0) {
+        return Math.round((savings / incomes) * 100);
+      } else {
+        return 0;
+      }
     },
   },
   methods: {
