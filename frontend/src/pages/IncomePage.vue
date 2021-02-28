@@ -8,7 +8,7 @@
         :value="value"
         size="150px"
         :thickness="0.22"
-        :color="value > 75 ? 'blue' : value > 50 ? 'green' : 'red'"
+        :color="value > 75 ? 'secondary' : value > 50 ? 'green' : 'red'"
         track-color="white"
         class="q-ma-md text-bold text-signika-negative"
       >

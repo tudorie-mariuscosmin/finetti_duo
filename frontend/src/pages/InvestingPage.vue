@@ -8,7 +8,7 @@
         :value="value"
         size="150px"
         :thickness="0.22"
-        :color="value >= 10 ? 'blue' : value >= 7 ? 'green' : 'red'"
+        :color="value >= 10 ? 'secondary' : value >= 7 ? 'green' : 'red'"
         track-color="white"
         class="q-ma-md text-bold text-signika-negative"
         :max="maxValue"
@@ -17,7 +17,7 @@
       </q-circular-progress>
     </div>
 
-    <div>
+    <div class="q-ma-md">
       <q-card
         v-for="investment in investments"
         :key="investment.id"
