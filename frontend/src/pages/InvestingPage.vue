@@ -10,7 +10,7 @@
         :thickness="0.22"
         :color="value >= 10 ? 'blue' : value >= 7 ? 'green' : 'red'"
         track-color="white"
-        class="q-ma-md text-bold"
+        class="q-ma-md text-bold text-signika-negative"
         :max="maxValue"
       >
         {{ value }}%
@@ -161,9 +161,9 @@ export default {
         name: "",
         description: "",
         value: 0,
-        expectedReturn: 0,
+        expectedReturn: 0
       },
-      maxValue: 15,
+      maxValue: 15
     };
   },
   computed: {
@@ -190,18 +190,18 @@ export default {
       } else {
         return 0;
       }
-    },
+    }
   },
   methods: {
     addItem() {
       this.$store.dispatch("fire/addInvestment", { ...this.itemToAdd });
       this.dialogAdd = false;
-    },
+    }
   },
   beforeMount() {
     this.$store.dispatch("fire/getInvestment");
     this.$store.dispatch("fire/getEconomies");
-  },
+  }
 };
 </script>
 

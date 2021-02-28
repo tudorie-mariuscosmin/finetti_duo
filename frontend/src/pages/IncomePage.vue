@@ -10,7 +10,7 @@
         :thickness="0.22"
         :color="value > 75 ? 'blue' : value > 50 ? 'green' : 'red'"
         track-color="white"
-        class="q-ma-md text-bold"
+        class="q-ma-md text-bold text-signika-negative"
       >
         {{ value }}%
       </q-circular-progress>
@@ -226,7 +226,7 @@
                 toggle-color="primary"
                 :options="[
                   { label: 'Income', value: true },
-                  { label: 'Expense', value: false },
+                  { label: 'Expense', value: false }
                 ]"
               />
             </div>
@@ -263,7 +263,7 @@ export default {
         name: "",
         description: "",
         value: 0,
-        isIncome: false,
+        isIncome: false
       },
       // economies: [
       //   {
@@ -290,15 +290,15 @@ export default {
       // ],
       economies: [],
       incomes: 0,
-      savings: 0,
+      savings: 0
     };
   },
   computed: {
     getIncomes() {
-      return this.getEconomies.filter((economies) => economies.isIncome);
+      return this.getEconomies.filter(economies => economies.isIncome);
     },
     getSpending() {
-      return this.getEconomies.filter((economies) => !economies.isIncome);
+      return this.getEconomies.filter(economies => !economies.isIncome);
     },
     getEconomies() {
       return this.$store.getters["fire/getEconomies"];
@@ -316,17 +316,17 @@ export default {
       } else {
         return 0;
       }
-    },
+    }
   },
   methods: {
     addItem() {
       this.$store.dispatch("fire/addEconomy", { ...this.itemToAdd });
       this.dialogAdd = false;
-    },
+    }
   },
   beforeMount() {
     this.$store.dispatch("fire/getEconomies");
-  },
+  }
 };
 </script>
 

@@ -35,6 +35,15 @@
           round
         />
         <q-separator class="large-screen-only" vertical spaced />
+        <q-btn
+          class="large-screen-only"
+          icon="eva-log-out-outline"
+          @click="logout()"
+          size="18px"
+          dense
+          flat
+          round
+        />
       </q-toolbar>
     </q-header>
     <q-footer class="bg-white small-screen-only" bordered>
@@ -61,7 +70,7 @@ import Title from "../components/Title";
 export default {
   name: "MainLayout",
   components: {
-    Title: Title,
+    Title: Title
   },
   data() {
     return {};
@@ -71,8 +80,8 @@ export default {
       this.$store.dispatch("fire/logout").then(() => {
         this.$router.push("/login");
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
