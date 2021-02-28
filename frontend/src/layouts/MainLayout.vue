@@ -34,6 +34,7 @@
           flat
           round
         />
+        <q-separator class="large-screen-only" vertical spaced />
       </q-toolbar>
     </q-header>
     <q-footer class="bg-white small-screen-only" bordered>
