@@ -23,7 +23,7 @@
         />
         <q-separator class="large-screen-only" vertical spaced />
         <q-toolbar-title class="text-signika-negative">
-          F.I.R.E.
+          <Title class="text-h3" />
         </q-toolbar-title>
         <q-btn
           class="large-screen-only"
@@ -57,8 +57,12 @@
 </template>
 
 <script>
+import Title from "../components/Title";
 export default {
   name: "MainLayout",
+  components: {
+    Title: Title,
+  },
   data() {
     return {};
   },
@@ -67,8 +71,8 @@ export default {
       this.$store.dispatch("fire/logout").then(() => {
         this.$router.push("/login");
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
